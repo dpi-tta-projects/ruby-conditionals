@@ -41,8 +41,9 @@ RSpec.describe "fizzbuzz.rb" do
     end
 
     it "uses if/elsif/else branching", points: 1 do
-      expect(source_code).to match(/\bif\b/).and match(/\belsif\b/).and match(/\belse\b/),
-        "Expected to use if/elsif/else to branch logic"
+      expect(source_code).to match(/\bif\b/), "Expected to use if to branch logic"
+      expect(source_code).to match(/\belsif\b/), "Expected to use elsif to branch logic"
+      expect(source_code).to match(/\belse\b/), "Expected to use else to branch logic"
     end
   end
 end
