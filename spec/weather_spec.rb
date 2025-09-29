@@ -13,6 +13,20 @@ RSpec.describe "weather.rb" do
       output = run_script_and_capture_lines("weather.rb")
       expect(output).to include("Nice out 😎")
     end
+    
+    it "prints Nice out 😎 when exactly 60", points: 1 do
+      allow_any_instance_of(Object).to receive(:rand).and_return(60)
+      output = run_script_and_capture_lines("weather.rb")
+      expect(output).to include("Nice out 😎"),
+        "Expected 60 degrees to be considered 'Nice out 😎'"
+    end
+
+    it "prints Nice out 😎 when exactly 85", points: 1 do
+      allow_any_instance_of(Object).to receive(:rand).and_return(85)
+      output = run_script_and_capture_lines("weather.rb")
+      expect(output).to include("Nice out 😎"),
+        "Expected 85 degrees to be considered 'Nice out 😎'"
+    end
 
     it "prints A little chilly 🧥 when between 32 and 60", points: 1 do
       allow_any_instance_of(Object).to receive(:rand).and_return(45)
@@ -41,8 +55,9 @@ RSpec.describe "weather.rb" do
     end
 
     it "uses if/elsif/else branching", points: 1 do
-      expect(source_code).to match(/\bif\b/).and match(/\belsif\b/).and match(/\belse\b/),
-        "Expected to use if/elsif/else to branch logic"
+      expect(source_code).to match(/\bif\b/), "Expected to use if to branch logic"
+      expect(source_code).to match(/\belsif\b/), "Expected to use elsif to branch logic"
+      expect(source_code).to match(/\belse\b/), "Expected to use else to branch logic"
     end
   end
 end
